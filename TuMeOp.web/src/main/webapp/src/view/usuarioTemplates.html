@@ -121,7 +121,7 @@
             Correo
         </div>
     </div>
-    <div style ="overflow:scroll; height:300px; clear:both">
+    <div style ="overflow:scroll; height:436px; clear:both">
         <% _.each(amigos, function(amigo) { %>
         <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('<%= componentId %>-verAmigo',{id:<%= amigo.getDisplay('facebookId')%>, name:'<%= amigo.getDisplay('name')%>'})">
             <div class="contenidoTablas" style="width: 48%">
