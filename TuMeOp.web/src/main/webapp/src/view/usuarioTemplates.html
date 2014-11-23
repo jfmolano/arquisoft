@@ -172,12 +172,20 @@
     </div>
     <div style ="overflow:scroll; height:436px; clear:both; background: rgba(250, 250, 250, 0.2);">
        <% _.each(bonos, function(bono) { %>
-        <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('...............',{id:})">
+        <div class="TableButton" style = "clear:both; height:50px;" onmouseover="Backbone.trigger('visualizarBono',{
+                fechaBono:'<%= htmlEncode(bono.getDisplay('fecha')) %>',
+                nameAmigo:'<%= htmlEncode(bono.getDisplay('name')) %>',
+                tiendaBono:'<%= htmlEncode(bono.getDisplay('nameTienda')) %>',
+                valorBono:'<%= htmlEncode(bono.getDisplay('valor')) %>',
+                estadoBono:'<%= htmlEncode(bono.getDisplay('estado')) %>'
+        })">
             <div class="contenidoTablas" style="width: 15%">
                 <%= htmlEncode(bono.getDisplay('fecha')) %>
             </div>
             <div class="contenidoTablas" style="width: 30%">
-                <%= htmlEncode(bono.getDisplay('usuariobnId')) %>
+                <a class="contenidoTablas" style="padding:0px;width: 100%" href="https://www.facebook.com/<%= htmlEncode(bono.getDisplay('usuariobnId')) %>" target="_blank">
+                    <%= htmlEncode(bono.getDisplay('name')) %>
+                </a>
             </div>
             <div class="contenidoTablas" style="width: 30%">
                 <%= htmlEncode(bono.getDisplay('tiendafId')) %>
@@ -228,7 +236,7 @@
             </div>
             <div class="contenidoTablas" style="width: 25%; height: 40px; padding: 8px;">    
                 <div class="form-group"> 
-                <form role="form" id="<%= componentId %>-bonoForm"> 
+                <form role="form" id="<%= componentId %>-bonoForm-<%= htmlEncode(amigo.getDisplay('facebookId')) %>"> 
                     <input type="hidden" name="tienda_bonoId" value="<%= htmlEncode(amigo.getDisplay('facebookId')) %>"/> 
                     <select class="form-control" id="valor" name="valor">
                         <option value="20000">$20.000</option>

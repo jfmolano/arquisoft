@@ -78,6 +78,13 @@ define(['controller/_usuarioController', 'delegate/usuarioDelegate', 'delegate/b
             Backbone.on(this.componentId + '-agregarBono', function(params) {
                 self.agregarBono(params);
             });
+            Backbone.on('visualizarBono', function(params) {
+                $('#valorBono').html(params.valorBono);
+                $('#nameAmigo').html(params.nameAmigo);
+                $('#tiendaBono').html(params.tiendaBono);
+                $('#fechaBono').html(params.fechaBono);
+                $('#estadoBono').html(params.estadoBono);
+            });
 
             this.importarAmigosTemplate = _.template($('#importarAmigos').html());
             this.principalTemplate = _.template($('#principal').html());
@@ -484,8 +491,8 @@ define(['controller/_usuarioController', 'delegate/usuarioDelegate', 'delegate/b
         },
         agregarBono: function(params) {
             var self = this;
-            var model = $('#' + this.componentId + '-bonoForm').serializeObject();
-
+            var model = $('#' + this.componentId + '-bonoForm-'+params.tFb).serializeObject();
+            console.log('agregar el bono: '+'#' + this.componentId + '-bonoForm-'+params.tFb);
             console.log('agregar el bono: ' + JSON.stringify(model));
             self.bonoNuevo.set('valor', model.valor);
             self.bonoNuevo.set('tiendafId', params.tFb);

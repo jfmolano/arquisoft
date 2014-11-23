@@ -36,7 +36,9 @@ define([], function() {
 		 'valor' : '' ,  
 		 'usuariobnId' : '' ,
                  'tiendafId' : '' ,
-		 'tienda_bonoId' : ''        },
+		 'tienda_bonoId' : '',
+                 'nameTienda':''
+             },
         initialize: function() {
           var self = this;
           this.on('invalid',function(error){
