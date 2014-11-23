@@ -121,16 +121,8 @@
             Correo
         </div>
     </div>
-    <div style ="overflow:scroll; height:436px; clear:both">
+    <div style ="overflow:scroll; height:436px; clear:both; background: rgba(250, 250, 250, 0.2);">
         <% _.each(amigos, function(amigo) { %>
-        <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('<%= componentId %>-verAmigo',{id:<%= amigo.getDisplay('facebookId')%>, name:'<%= amigo.getDisplay('name')%>'})">
-            <div class="contenidoTablas" style="width: 48%">
-                <%= htmlEncode(amigo.getDisplay('name')) %>
-            </div>
-            <div class="contenidoTablas" style="width: 48%">
-                <%= htmlEncode(amigo.getDisplay('email')) %>
-            </div>
-        </div>
         <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('<%= componentId %>-verAmigo',{id:<%= amigo.getDisplay('facebookId')%>, name:'<%= amigo.getDisplay('name')%>'})">
             <div class="contenidoTablas" style="width: 48%">
                 <%= htmlEncode(amigo.getDisplay('name')) %>
@@ -160,35 +152,47 @@
 </script>
 <script type="text/template" id="bonoList">
     
-   
-                      
-    <div class="CSSTableGenerator">
-    <!-- Default panel contents -->
-    <table>
-    <tr>
-		 <td>Fecha</td>
-		 <td>Amigo</td>
-		 <td>Tienda</td>
-                 <td>Valor</td>
-                 <td>Estado</td>
-    </tr>
-    <% _.each(bonos, function(bono) { %>
-    <tr>
-		<td><%= htmlEncode(bono.getDisplay('fecha')) %></td>
-                <td><%= htmlEncode(bono.getDisplay('usuariobnId')) %></td>
-		<td><%= htmlEncode(bono.getDisplay('tiendafId')) %></td>
-		<td><%= htmlEncode(bono.getDisplay('valor')) %></td>  
-                <td><%= htmlEncode(bono.getDisplay('estado')) %></td>  
-    </tr>
-    <% }); %>
-    </table>
-    </div>  
-    
-    
-    
+    <div class="personal" style="height:45px;">Bonos Comprados</div>
+    <div>
+        <div class="titulosTablas" style="width: 15%">
+            Fecha
         </div>
+        <div class="titulosTablas" style="width: 30%">
+            Amigo
+        </div>
+        <div class="titulosTablas" style="width: 30%">
+            Tienda
+        </div>
+        <div class="titulosTablas" style="width: 10%">
+           Valor
+        </div>
+        <div class="titulosTablas" style="width: 15%">
+            Estado
+        </div>
+    </div>
+    <div style ="overflow:scroll; height:436px; clear:both; background: rgba(250, 250, 250, 0.2);">
+       <% _.each(bonos, function(bono) { %>
+        <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('...............',{id:})">
+            <div class="contenidoTablas" style="width: 15%">
+                <%= htmlEncode(bono.getDisplay('fecha')) %>
+            </div>
+            <div class="contenidoTablas" style="width: 30%">
+                <%= htmlEncode(bono.getDisplay('usuariobnId')) %>
+            </div>
+            <div class="contenidoTablas" style="width: 30%">
+                <%= htmlEncode(bono.getDisplay('tiendafId')) %>
+            </div>
+            <div class="contenidoTablas" style="width: 10%">
+                <%= htmlEncode(bono.getDisplay('valor')) %>
+            </div>
+            <div class="contenidoTablas" style="width: 15%">
+                <%= htmlEncode(bono.getDisplay('estado')) %>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+ 
 
-      <hr>
 
       
 
@@ -199,52 +203,57 @@
 <script type="text/template" id="likesList">
     <div class="personal">Amigos: <%= htmlEncode(amigoSelec.name) %> </div>
     <div>
-                <!-- Default panel contents -->
-                <table class="table striped">
-                <thead>
-                <tr>
-                            <th>Nombre</th>
-                            <th>Id</th>
-                            <th>Valor</th>
-                            <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% _.each(amigos, function(amigo) { %>
-                <% if(amigo.getDisplay('name')==='Separador') {%>
-                <tr><td colspan="4" style="background-color:white;color:black;">Todas las tiendas</td></tr> 
-                <% } else { %> 
-                <tr>
-                    
-                    
-                    <td><%= htmlEncode(amigo.getDisplay('name')) %></td>
-                    <td><%= htmlEncode(amigo.getDisplay('facebookId')) %></td>
-                    
-                    
-                    <td>
-                        <div class="form-group"> 
-                        <form role="form" id="<%= componentId %>-bonoForm"> 
-                            <input type="hidden" name="tienda_bonoId" value="<%= htmlEncode(amigo.getDisplay('facebookId')) %>"/> 
-                            <select class="form-control" id="valor" name="valor">
-                                <option value="20000">$20.000</option>
-                                <option value="50000">$50.000</option>
-                                <option value="100000">$100.000</option>
-                                <option value="150000">$150.000</option>
-                            </select>
-                        </form>
-                        </div>
-                    </td>
-                    <td>
-                        <button id="<%= componentId %>-verAmigo" class="btn btn-large btn-success" onclick="Backbone.trigger('<%= componentId %>-agregarBono',{usuaFacebookId:<%=usuarioActual.getDisplay('facebookId')%>, tFb:<%=amigo.getDisplay('facebookId')%>}); return false" type="button" class="btn btn-success"> 
-                            Comprar Bono
-                        </button>
-                    </td>
-                    
-                </tr><% }%>
-                <% }); %>
-                </tbody>
-                </table>
+        <div class="titulosTablas" style="width: 33%">
+            Nombre
+        </div>
+        <div class="titulosTablas" style="width: 33%">
+            Valor
+        </div>
+        <div class="titulosTablas" style="width: 33%">
+            Comprar
+        </div>
+    </div>
+    <div style ="overflow:scroll; height:436px; clear:both; background: rgba(250, 250, 250, 0.2);">
+        <% _.each(amigos, function(amigo) { %>
+        <% if(amigo.getDisplay('name')==='Separador') {%>
+            <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('<%= componentId %>-verAmigo',{id:<%= amigo.getDisplay('facebookId')%>, name:'<%= amigo.getDisplay('name')%>'})">
+            Todas las tiendas--
             </div>
+        <% } else { %> 
+        <div class="TableButton" style = "clear:both; height:50px;" >
+            <div class="contenidoTablas" style="width: 50%">
+                <a class="contenidoTablas" style="padding:0px;width: 100%" href="https://www.facebook.com/<%= htmlEncode(amigo.getDisplay('facebookId')) %>" target="_blank">
+                    <%= htmlEncode(amigo.getDisplay('name')) %>
+                </a>
+            </div>
+            <div class="contenidoTablas" style="width: 25%; height: 40px; padding: 8px;">    
+                <div class="form-group"> 
+                <form role="form" id="<%= componentId %>-bonoForm"> 
+                    <input type="hidden" name="tienda_bonoId" value="<%= htmlEncode(amigo.getDisplay('facebookId')) %>"/> 
+                    <select class="form-control" id="valor" name="valor">
+                        <option value="20000">$20.000</option>
+                        <option value="50000">$50.000</option>
+                        <option value="100000">$100.000</option>
+                        <option value="150000">$150.000</option>
+                    </select>
+                </form>
+                </div>
+            </div>
+            <div class="contenidoTablas" style="width: 25%">  
+                <button id="<%= componentId %>-verAmigo" class="btn btn-success" onclick="Backbone.trigger('<%= componentId %>-agregarBono',{usuaFacebookId:<%=usuarioActual.getDisplay('facebookId')%>, tFb:<%=amigo.getDisplay('facebookId')%>}); return false" type="button" class="btn btn-success"> 
+                    Comprar Bono
+                </button>
+            </div>
+        </div>
+        <% }%>
+        <% }); %>
+    </div>
+    
+    
+    
+    
+    
+    
         
         
 

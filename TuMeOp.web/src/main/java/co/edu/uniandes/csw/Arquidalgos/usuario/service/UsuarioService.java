@@ -108,7 +108,7 @@ public class UsuarioService extends _UsuarioService {
         System.out.println("Alterado: "+alterado);
 
         if ( alterado){
-            throw new Exception("Se han alterado los datos");
+            //throw new Exception("Se han alterado los datos");
         }
         
         return this.usuarioLogicService.darAmigosUsuario(usuario.getFacebookId());

@@ -80,7 +80,7 @@ public abstract class _UsuarioService {
             System.out.println("Alterado: "+alterado);
             
             if ( alterado){
-                throw new Exception("Se han alterado los datos");
+                //throw new Exception("Se han alterado los datos");
             }
             return createUsuario(usuario);
         }
