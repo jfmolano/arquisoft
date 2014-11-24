@@ -112,7 +112,15 @@
 </script>
 
 <script type="text/template" id="amigos">
-    <div class="personal" style="height:45px;">Amigos</div>
+    <div style="height: 45px; width: 60%; float: left;" class="personal">
+        Amigos
+    </div>
+    <div id="<%= componentId %>-importarFacebook"
+                onclick="Backbone.trigger('<%= componentId %>-importarFacebook',{}); return false"  
+                style="float: right; width: 40%; border-bottom-style: solid; border-bottom-color: rgb(210, 185, 101); height: 45px;" 
+                class="MenuButton" >
+        Importar Amigos
+    </div>
     <div>
         <div class="titulosTablas" style="width: 48%">
             Nombre
@@ -141,12 +149,7 @@
 <script type="text/template" id="importarAmigos">
 
    
-                <button id="<%= componentId %>-importarFacebook" class="btn btn-medium btn-primary" 
-                onclick="Backbone.trigger('<%= componentId %>-importarFacebook',{}); return false" 
-                type="button" class="btn btn-primary">
-
-                Importar Amigos Facebook
-                </button>
+                <iframe id="container" src="tienda.html" style="width: 100%; height: 680px; border: 0; margin: 0;"></iframe> 
             
     
 </script>
@@ -157,7 +160,7 @@
         <div class="titulosTablas" style="width: 15%">
             Fecha
         </div>
-        <div class="titulosTablas" style="width: 30%">
+        <div class="titulosTablas" style="width: 28%">
             Amigo
         </div>
         <div class="titulosTablas" style="width: 30%">
@@ -188,7 +191,9 @@
                 </a>
             </div>
             <div class="contenidoTablas" style="width: 30%">
-                <%= htmlEncode(bono.getDisplay('tiendafId')) %>
+                <a class="contenidoTablas" style="padding:0px;width: 100%" href="https://www.facebook.com/<%= htmlEncode(bono.getDisplay('tiendafId')) %>" target="_blank">
+                    <%= htmlEncode(bono.getDisplay('nameTienda')) %>
+                </a>
             </div>
             <div class="contenidoTablas" style="width: 10%">
                 <%= htmlEncode(bono.getDisplay('valor')) %>
@@ -209,24 +214,30 @@
 </script>
 
 <script type="text/template" id="likesList">
-    <div class="personal">Amigos: <%= htmlEncode(amigoSelec.name) %> </div>
+    <div class="personal" style="height:45px;">Amigos: <%= htmlEncode(amigoSelec.name) %> </div>
     <div>
-        <div class="titulosTablas" style="width: 33%">
+        <div class="titulosTablas" style="width: 48%">
             Nombre
         </div>
-        <div class="titulosTablas" style="width: 33%">
+        <div class="titulosTablas" style="width: 25%">
             Valor
         </div>
-        <div class="titulosTablas" style="width: 33%">
+        <div class="titulosTablas" style="width: 25%">
             Comprar
         </div>
     </div>
     <div style ="overflow:scroll; height:436px; clear:both; background: rgba(250, 250, 250, 0.2);">
         <% _.each(amigos, function(amigo) { %>
         <% if(amigo.getDisplay('name')==='Separador') {%>
-            <div class="TableButton" style = "clear:both; height:50px;" onclick="Backbone.trigger('<%= componentId %>-verAmigo',{id:<%= amigo.getDisplay('facebookId')%>, name:'<%= amigo.getDisplay('name')%>'})">
-            Todas las tiendas--
+            <div id ="btnMostarTodas"class="contenidoTablas">
+                <center>
+                Las tiendas que se muestran son las que le gustan a su amigo si quiere puede 
+                <a class="contenidoTablas" style="padding:0px;width: 100%" onclick="$('#btnMostarTodas').hide();$('#AllTiendas').slideDown('slow')">
+                    Ver Todas Las Tiendas
+                </a>
+                </center>
             </div>
+            <div id ="AllTiendas" style="display:none">
         <% } else { %> 
         <div class="TableButton" style = "clear:both; height:50px;" >
             <div class="contenidoTablas" style="width: 50%">
@@ -255,6 +266,7 @@
         </div>
         <% }%>
         <% }); %>
+        </div>
     </div>
     
     
